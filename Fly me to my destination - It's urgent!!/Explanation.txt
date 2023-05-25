@@ -1,0 +1,74 @@
+//Logic Explanation by example
+// Solved by using the sliding window or two pointer approach
+//the greedy approach
+
+  ->initialize 3 variable to 0
+      leftWindow- left boundry of the reachable window
+      rightWindow- right boundry of the reachable window
+      count-> minimum number of planes to reach the last airport
+      
+  ->after that a  while loop till rightwindow is less than  the second  last index of the array 
+      rightwindow< arr.length
+  ->after that we cahcek max reacahble point from [leftwindow,...,rightwindow]
+      ...=(may or may not be elements)
+  ->then upgrade the leftwindow and rightwindow
+  ->check the boundry condition i.e after updating wheather the leftwindow is smaller than the rightwindow or reachable
+  =>increment the count
+  
+  -----------------------------------------------------------------
+   0 1 2 3 4 5 6 7 8->index 
+  [1,6,3,4,5,0,0,0,6]
+
+  leftwindow=rightwindow=0;
+count=0;
+
+->  0<9(index)
+      reachable =0;
+      then in for loop leftwidnow<=rightwindow(i.e 0<=0)
+          reachable = max(0,1)=1
+      
+      leftwindow = rightwindow+1
+                  = 0+1=1
+      rightwindow= reachable i.e 1
+
+      (boundry condition)
+      leftwindow>rightwindow
+      1>1 FALSE
+      
+    count++ i.e count = 0+1=1
+
+->->  1<9(index)
+      reachable =0;
+      then in for loop leftwidnow<=rightwindow(i.e 1<=1)
+          reachable = max(0,7)=7
+      
+      leftwindow = rightwindow+1
+                  = 1+1=2
+      rightwindow= reachable i.e 7
+
+      (boundry condition)
+      leftwindow>rightwindow
+      2>7 FALSE
+      
+    count++ i.e count = 1+1=2
+
+
+->->  7<9(index)
+      reachable =0;
+      then in for loop leftwidnow<=rightwindow(i.e 2<=9)
+          inside for loop for i=4 we can reach max reachable
+          reachable = max(0,9)=9
+      
+      leftwindow = rightwindow+1
+                  = 7+1=8
+      rightwindow= reachable i.e 9
+
+      (boundry condition)
+      leftwindow>rightwindow
+      8>9 FALSE
+      
+    count++ i.e count = 2+1=3
+
+->->  9<9(index)
+      false
+      we get out of loop and return count i.e 3
